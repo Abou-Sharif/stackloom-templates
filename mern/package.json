@@ -1,0 +1,21 @@
+{
+  "name": "stackloom-mern-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MERN starter template for stackloom — Express + MongoDB + React + Vite with refresh-token cookie auth.",
+  "packageManager": "pnpm@10.12.4",
+  "scripts": {
+    "dev": "concurrently \"pnpm -C backend dev\" \"pnpm -C frontend dev\"",
+    "build": "pnpm -C frontend build",
+    "lint": "pnpm -C backend lint && pnpm -C frontend lint",
+    "test": "concurrently \"pnpm -C backend test\" \"pnpm -C frontend test\"",
+    "test:coverage": "concurrently \"pnpm -C backend test:coverage\" \"pnpm -C frontend test:coverage\"",
+    "install:all": "pnpm install"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.6",
+    "concurrently": "^9.1.2",
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.6"
+  }
+}
