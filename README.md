@@ -1,12 +1,12 @@
 # stackloom-templates
 
-The starter applications [`stackloom`](https://github.com/BENIMANA-II/stackloom)
+The starter applications [`stackloom`](https://github.com/Abou-Sharif/stackloom)
 scaffolds from. Each subdirectory is a complete, runnable application carrying
 a `.loom/blueprint.json` — the architecture contract the CLI reads to generate
 into it.
 
-| Template | Stack | Tag |
-|----------|-------|-----|
+| Template          | Stack                                                                              | Tag       |
+| ----------------- | ---------------------------------------------------------------------------------- | --------- |
 | [`mern/`](./mern) | Express + MongoDB + Mongoose · React + Vite + Tailwind · refresh-token cookie auth | `mern-v*` |
 
 ## Using a template
@@ -17,7 +17,7 @@ npx stackloom new my-app                 # uses the default (mern) template
 loom new my-app --template mern          # explicit
 
 # Or by hand — clone a tagged release tarball
-curl -L https://github.com/BENIMANA-II/stackloom-templates/archive/refs/tags/mern-v1.0.0.tar.gz | tar xz
+curl -L https://github.com/Abou-Sharif/stackloom-templates/archive/refs/tags/mern-v1.0.0.tar.gz | tar xz
 mv stackloom-templates-mern-v1.0.0/mern my-app
 cd my-app && pnpm install && pnpm dev
 ```
@@ -39,7 +39,7 @@ To add e.g. a Next.js template:
 
 ## Repo split context
 
-This repo and the [`stackloom`](https://github.com/BENIMANA-II/stackloom) CLI
+This repo and the [`stackloom`](https://github.com/Abou-Sharif/stackloom) CLI
 were split out of a single monorepo. The split is documented in the CLI repo's
 `SPLIT.md`. The CLI and the templates version **independently** — the
 blueprint `schemaVersion` is the compatibility gate.

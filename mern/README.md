@@ -1,7 +1,7 @@
 # Stackloom · MERN template
 
 The runnable MERN application that ships with the
-[`stackloom`](https://github.com/BENIMANA-II/stackloom) CLI. Use it as-is, or
+[`stackloom`](https://github.com/Abou-Sharif/stackloom) CLI. Use it as-is, or
 let `loom new` scaffold a fresh copy and extend it with `loom generate
 resource`.
 
@@ -25,13 +25,13 @@ Backend: `http://localhost:5000` · Frontend: `http://localhost:5173`
 
 ## Commands
 
-| Command | Purpose |
-| --- | --- |
-| `pnpm dev` | Run backend and frontend together |
-| `pnpm build` | Build the frontend |
-| `pnpm lint` | Lint backend and frontend |
-| `pnpm -C backend dev` | Run only the API |
-| `pnpm -C frontend dev` | Run only the React app |
+| Command                | Purpose                           |
+| ---------------------- | --------------------------------- |
+| `pnpm dev`             | Run backend and frontend together |
+| `pnpm build`           | Build the frontend                |
+| `pnpm lint`            | Lint backend and frontend         |
+| `pnpm -C backend dev`  | Run only the API                  |
+| `pnpm -C frontend dev` | Run only the React app            |
 
 ## Scaffold & extend with `loom`
 
@@ -88,24 +88,24 @@ mern/
 
 ### Backend
 
-| Variable | Purpose |
-| --- | --- |
-| `NODE_ENV` | `development`, `test`, or `production` |
-| `PORT` | API port |
-| `MONGODB_URI` | MongoDB connection string |
-| `CLIENT_URL` | Main frontend URL |
-| `CORS_ORIGINS` | Comma-separated allowed browser origins |
-| `JWT_ACCESS_SECRET` | Secret for short-lived access tokens |
-| `JWT_REFRESH_SECRET` | Secret for refresh tokens |
-| `ACCESS_TOKEN_EXPIRES_IN` | Default: `15m` |
-| `REFRESH_TOKEN_EXPIRES_IN` | Default: `7d` |
-| `BCRYPT_SALT_ROUNDS` | Password hash cost |
-| `COOKIE_NAME` | Refresh cookie name |
+| Variable                   | Purpose                                 |
+| -------------------------- | --------------------------------------- |
+| `NODE_ENV`                 | `development`, `test`, or `production`  |
+| `PORT`                     | API port                                |
+| `MONGODB_URI`              | MongoDB connection string               |
+| `CLIENT_URL`               | Main frontend URL                       |
+| `CORS_ORIGINS`             | Comma-separated allowed browser origins |
+| `JWT_ACCESS_SECRET`        | Secret for short-lived access tokens    |
+| `JWT_REFRESH_SECRET`       | Secret for refresh tokens               |
+| `ACCESS_TOKEN_EXPIRES_IN`  | Default: `15m`                          |
+| `REFRESH_TOKEN_EXPIRES_IN` | Default: `7d`                           |
+| `BCRYPT_SALT_ROUNDS`       | Password hash cost                      |
+| `COOKIE_NAME`              | Refresh cookie name                     |
 
 ### Frontend
 
-| Variable | Purpose |
-| --- | --- |
+| Variable       | Purpose                                           |
+| -------------- | ------------------------------------------------- |
 | `VITE_API_URL` | API base URL, usually `/api` in local development |
 
 `loom env --sync` will append any missing keys from `.env.example` to `.env`.
