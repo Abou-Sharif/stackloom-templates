@@ -1,5 +1,6 @@
 const morgan = require("morgan");
 const winston = require("winston");
+const rtracer = require("cls-rtracer");
 const { env } = require("../config/env");
 
 const logger = winston.createLogger({
@@ -8,7 +9,8 @@ const logger = winston.createLogger({
     winston.format.timestamp(),
     winston.format.errors({ stack: true }),
     winston.format((info) => {
-      const { requestId } = require('cls-rtracer').id() || {};
+      // cls-rtracer.id() returns a string (the current request id) or undefined.
+      const requestId = rtracer.id();
       if (requestId) info.requestId = requestId;
       return info;
     })(),

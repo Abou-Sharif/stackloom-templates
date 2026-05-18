@@ -1,3 +1,7 @@
+// STARTER-KIT: Customize this file to configure your app's navigation and global settings
+// GUIDE: This file is required by the StackLoom CLI contract — do not rename or move it.
+// GUIDE: The CLI rewrites only the single appPreset assignment near the bottom; the rest is yours to edit.
+
 import { designLayouts } from "./design-layouts";
 import { designThemes, designTokens } from "./design-themes";
 import { dataDisplayTemplates } from "./data-display-templates";

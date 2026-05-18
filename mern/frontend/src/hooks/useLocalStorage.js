@@ -2,12 +2,23 @@ import { useEffect, useState } from "react";
 
 export const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
-    const stored = window.localStorage.getItem(key);
-    return stored ? JSON.parse(stored) : initialValue;
+    if (typeof window === "undefined") return initialValue;
+    try {
+      const stored = window.localStorage.getItem(key);
+      return stored !== null ? JSON.parse(stored) : initialValue;
+    } catch {
+      // Corrupted or non-JSON value — fall back to initialValue rather than crash.
+      return initialValue;
+    }
   });
 
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    if (typeof window === "undefined") return;
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+      // Quota exceeded / disabled storage — non-fatal for the UI.
+    }
   }, [key, value]);
 
   return [value, setValue];

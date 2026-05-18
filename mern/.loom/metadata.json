@@ -1,0 +1,9 @@
+{
+  "navConfigPath": "frontend/src/config/app-preset.js",
+  "engineCompatibility": "stackloom-cli@>=1.0.0",
+  "stack": "mern",
+  "authVariants": ["jwt-localstorage", "jwt-refresh-cookie"],
+  "uiVariants": ["shadcn", "plain-tailwind"],
+  "maintainer": "stackloom",
+  "docsUrl": "https://stackloom.dev/docs/templates/mern"
+}

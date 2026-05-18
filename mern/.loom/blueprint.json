@@ -1,5 +1,19 @@
 {
   "schemaVersion": "1.0",
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "Production-ready MERN fullstack starter",
+  "contract": {
+    "navConfigPath": "frontend/src/config/app-preset.js",
+    "entryPoints": {
+      "frontend": "frontend/src/main.jsx",
+      "backend": "backend/server.js"
+    },
+    "requiredEnvFiles": [
+      "backend/.env.example",
+      "frontend/.env.example"
+    ]
+  },
   "architecture": {
     "id": "mern",
     "name": "MERN Fullstack Starter",
