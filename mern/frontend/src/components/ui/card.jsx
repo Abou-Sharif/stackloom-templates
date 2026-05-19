@@ -1,7 +1,13 @@
+import { cardVariantClasses } from "@/lib/ui-variant-classes";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, ...props }) {
-  return <div className={cn("rounded-[var(--radius-card)] border bg-card text-card-foreground shadow-[var(--shadow-card)] [border-width:var(--border-width)]", className)} {...props} />;
+export function Card({ className, variant = "default", ...props }) {
+  return (
+    <div
+      className={cn(cardVariantClasses[variant] || cardVariantClasses.default, className)}
+      {...props}
+    />
+  );
 }
 
 export function CardHeader({ className, ...props }) {

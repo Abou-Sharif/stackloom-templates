@@ -5,6 +5,7 @@
 import { designLayouts } from "./design-layouts";
 import { designThemes, designTokens } from "./design-themes";
 import { dataDisplayTemplates } from "./data-display-templates";
+import { uiVariants } from "./ui-variants";
 import { installShadcnDesignPreset } from "@/lib/shadcn-theme";
 import { ROUTES } from "@/utils/constants";
 
@@ -36,6 +37,7 @@ export const presetVariants = {
     layout: designLayouts.topbarPortal,
     theme: designThemes.operationsDense,
     dataDisplay: dataDisplayTemplates.dashboard,
+    ui: uiVariants.refined,
     landing: {
       badge: "httpOnly refresh-token auth",
       title: "MERN Starter Kit",
@@ -62,6 +64,7 @@ export const presetVariants = {
     layout: designLayouts.sidebarWorkspace,
     theme: designThemes.clinicSoft,
     dataDisplay: dataDisplayTemplates.dashboard,
+    ui: uiVariants.clinic,
     landing: {
       badge: "Patient-ready auth foundation",
       title: "CareDesk",
@@ -87,6 +90,7 @@ export const presetVariants = {
     layout: designLayouts.rightRailStudio,
     theme: designThemes.studioElevated,
     dataDisplay: dataDisplayTemplates.editorial,
+    ui: uiVariants.studio,
     landing: {
       badge: "Flexible creative workspace",
       title: "StudioBoard",
@@ -112,6 +116,7 @@ export const presetVariants = {
     layout: designLayouts.sidebarWorkspace,
     theme: designThemes.operationsDense,
     dataDisplay: dataDisplayTemplates.denseOps,
+    ui: uiVariants.operations,
     landing: {
       badge: "Dense internal tooling",
       title: "OpsGrid",
@@ -137,6 +142,7 @@ export const presetVariants = {
     layout: designLayouts.topbarPortal,
     theme: designThemes.commerceWarm,
     dataDisplay: dataDisplayTemplates.commerce,
+    ui: uiVariants.commerce,
     landing: {
       badge: "Storefront-ready foundation",
       title: "MarketPilot",
@@ -165,6 +171,7 @@ export const presetVariants = {
       appearance: designThemes.studioElevated.appearance,
     }),
     dataDisplay: dataDisplayTemplates.dashboard,
+    ui: uiVariants.refined,
     landing: {
       badge: "Paste shadcn CSS variables",
       title: "Your Imported Theme",

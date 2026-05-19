@@ -6,7 +6,14 @@ All notable changes to the Stackloom Templates repository will be documented her
 
 ### Added
 
-- Root version tracking via `package.json` and documentation metadata.
-- `CHANGELOG.md` to track future template releases and compatibility notes.
-- `DEVELOPER.md` with repository guidance for adding, validating, and releasing templates.
-- Updated `README.md` with the current repository version.
+- Root package version tracking via `package.json` and public npm publishing metadata.
+- `README.md` with template usage, CLI integration, and accessibility/responsiveness guidance.
+- `DEVELOPER.md` with publishing, versioning, and template compatibility instructions.
+- `CUSTOMIZATION.md` in the MERN template for theme, layout, UI, and data display presets.
+- `mern/` template core improvements for dynamic preset-driven UI, mobile-first tables, and accessible pagination.
+
+### Improved
+
+- Clarified how the Stackloom CLI rewrites `frontend/src/config/app-preset.js` safely.
+- Documented token split auth and secure refresh-token cookie workflows in the MERN template.
+- Added semantics for responsive and accessible UI variants in published template documentation.

@@ -120,6 +120,26 @@ This template uses a safer token split:
 - Expired API request: Axios attempts one shared silent refresh and retries the original request once.
 - Failed refresh: frontend clears local auth state.
 
+## Mobile-first responsiveness
+
+The frontend is built with a mobile-first responsive design:
+
+- `AppShell` includes a skip link, responsive shell modes, and mobile-friendly sidebar toggle.
+- `PageWrapper` uses fluid layout spacing, max-width control, and accessible heading hierarchy.
+- `ResponsiveRecordView` renders card list views on mobile and table views on larger screens.
+- `DataPagination` provides keyboard-friendly controls, live update messaging, and row-size selection.
+
+## Dynamic customization
+
+This template is intentionally dynamic and CLI-connected:
+
+- `loom customize theme` switches the color palette and spacing tokens.
+- `loom customize layout` swaps shell layouts for sidebar, topbar, and hybrid experiences.
+- `loom customize ui` changes card, modal, select, pagination, and record-card personality.
+- `loom customize data` switches between dashboard, compact, editorial, and commerce display templates.
+
+For full control, edit `frontend/src/config/app-preset.js` or use the CLI to rewrite only the safe preset assignments.
+
 Auth files:
 
 - Backend routes: `backend/src/modules/auth/auth.routes.js`

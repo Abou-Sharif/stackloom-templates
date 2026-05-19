@@ -12,6 +12,7 @@ export function PageWrapper({ title, subtitle, actions, className, children }) {
 
   return (
     <main
+      id="main-content"
       className={cn(
         "w-full",
         alignClasses[content.align || "center"],

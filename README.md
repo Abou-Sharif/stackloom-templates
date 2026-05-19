@@ -2,6 +2,28 @@
 
 _Current version: 1.0.0_
 
+A published template repository for the Stackloom CLI. This package contains
+opinionated, production-ready starter apps that are responsive, accessible,
+and highly customizable from both the template source and the CLI.
+
+Each subdirectory is a complete application scaffold with a `.loom/blueprint.json`
+contract and runtime-ready frontend/backend structure.
+
+The current default template is:
+
+- [`mern/`](./mern) — Express + MongoDB + Mongoose backend, React + Vite + Tailwind frontend.
+
+Templates in this repo are designed around:
+
+- mobile-first responsiveness across dashboards, forms, tables, and modal flows
+- high accessibility with keyboard interactions, live regions, and skip links
+- dynamic UI presets for card, modal, select, pagination, and record list styling
+- CLI-driven customization via `loom customize` and `loom generate`
+- consistent layout switching and theme token preservation across the scaffold
+
+Each template also exposes a developer-facing `README.md`, `DEVELOPER.md`, and
+`CHANGELOG.md` so the scaffold stays easy to extend and release.
+
 The starter applications [`stackloom`](https://github.com/Abou-Sharif/stackloom)
 scaffolds from. Each subdirectory is a complete, runnable application carrying
 a `.loom/blueprint.json` — the architecture contract the CLI reads to generate

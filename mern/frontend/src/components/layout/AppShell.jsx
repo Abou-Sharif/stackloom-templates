@@ -20,7 +20,14 @@ export function AppShell({ secure = false, children }) {
   const topbarFixed = showTopbar && layout.topbar?.position === "fixed";
 
   return (
-    <div className={cn("min-h-screen", layout.footer?.position === "bottom" && "flex flex-col")}>
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+      >
+        Skip to main content
+      </a>
+      <div className={cn("min-h-screen", layout.footer?.position === "bottom" && "flex flex-col")}>
       {showTopbar && <Navbar showMenuButton={showSidebar} />}
       {showSidebar && !showTopbar && (
         <Button
@@ -37,6 +44,7 @@ export function AppShell({ secure = false, children }) {
         <div className={cn("min-w-0 flex-1", topbarFixed && "pt-16")}>{children}</div>
       </div>
       {layout.footer?.enabled && <Footer />}
-    </div>
+      </div>
+    </>
   );
 }

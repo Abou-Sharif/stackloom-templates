@@ -1,105 +1,144 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
-import { ChevronDown, Check } from "lucide-react"
+import * as React from "react";
+import { ChevronDown, Check } from "lucide-react";
+import { selectTriggerClasses } from "@/lib/ui-variant-classes";
+import { cn } from "@/lib/utils";
 
-const SelectContext = React.createContext({})
+const SelectContext = React.createContext({});
 
-const Select = React.forwardRef(({ className, children, defaultValue, onValueChange, ...props }, ref) => {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(defaultValue)
+const Select = React.forwardRef(
+  ({ className, children, defaultValue, value: controlledValue, onValueChange, ...props }, ref) => {
+    const [open, setOpen] = React.useState(false);
+    const [uncontrolled, setUncontrolled] = React.useState(defaultValue);
+    const isControlled = controlledValue !== undefined;
+    const value = isControlled ? controlledValue : uncontrolled;
+    const listId = React.useId();
 
-  const handleValueChange = (newValue) => {
-    setValue(newValue)
-    onValueChange?.(newValue)
-    setOpen(false)
-  }
+    const handleValueChange = (newValue) => {
+      if (!isControlled) setUncontrolled(newValue);
+      onValueChange?.(newValue);
+      setOpen(false);
+    };
 
-  return (
-    <SelectContext.Provider value={{ open, setOpen, value, onValueChange: handleValueChange }}>
-      <div ref={ref} className={cn("relative", className)} {...props}>
-        {children}
-      </div>
-    </SelectContext.Provider>
-  )
-})
-Select.displayName = "Select"
+    React.useEffect(() => {
+      if (!open) return;
+      const onDoc = (e) => {
+        if (ref?.current?.contains(e.target)) return;
+        setOpen(false);
+      };
+      document.addEventListener("mousedown", onDoc);
+      return () => document.removeEventListener("mousedown", onDoc);
+    }, [open, ref]);
 
-const SelectTrigger = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { open, setOpen, value } = React.useContext(SelectContext)
+    return (
+      <SelectContext.Provider
+        value={{ open, setOpen, value, onValueChange: handleValueChange, listId }}
+      >
+        <div ref={ref} className={cn("relative", className)} {...props}>
+          {children}
+        </div>
+      </SelectContext.Provider>
+    );
+  },
+);
+Select.displayName = "Select";
+
+const SelectTrigger = React.forwardRef(({ className, variant = "outline", children, ...props }, ref) => {
+  const { open, setOpen, value, listId } = React.useContext(SelectContext);
+  const variantClass = selectTriggerClasses[variant] || selectTriggerClasses.outline;
+
   return (
     <button
       ref={ref}
       type="button"
-      className={cn(
-        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
+      role="combobox"
+      aria-expanded={open}
+      aria-haspopup="listbox"
+      aria-controls={listId}
+      className={cn(variantClass, className)}
       onClick={() => setOpen(!open)}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setOpen(true);
+        }
+        if (e.key === "Escape") setOpen(false);
+      }}
       {...props}
     >
       {children || <span>{value}</span>}
-      <ChevronDown className="h-4 w-4 opacity-50" />
+      <ChevronDown className="h-4 w-4 shrink-0 opacity-50" aria-hidden />
     </button>
-  )
-})
-SelectTrigger.displayName = "SelectTrigger"
+  );
+});
+SelectTrigger.displayName = "SelectTrigger";
 
 const SelectValue = React.forwardRef(({ className, placeholder, ...props }, ref) => {
-  const { value } = React.useContext(SelectContext)
+  const { value } = React.useContext(SelectContext);
   return (
-    <div ref={ref} className={cn("block truncate", className)} {...props}>
+    <span ref={ref} className={cn("block truncate", className)} {...props}>
       {value || placeholder}
-    </div>
-  )
-})
-SelectValue.displayName = "SelectValue"
+    </span>
+  );
+});
+SelectValue.displayName = "SelectValue";
 
 const SelectContent = React.forwardRef(({ className, children, ...props }, ref) => {
-  const { open } = React.useContext(SelectContext)
-  if (!open) return null
+  const { open, listId } = React.useContext(SelectContext);
+  if (!open) return null;
+
   return (
     <div
       ref={ref}
+      id={listId}
+      role="listbox"
       className={cn(
-        "absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
-        className
+        "absolute z-50 mt-1 max-h-60 min-w-[8rem] w-full overflow-auto rounded-md border bg-popover text-popover-foreground shadow-md",
+        className,
       )}
       {...props}
     >
       {children}
     </div>
-  )
-})
-SelectContent.displayName = "SelectContent"
+  );
+});
+SelectContent.displayName = "SelectContent";
 
 const SelectItem = React.forwardRef(({ className, children, value, ...props }, ref) => {
-  const { value: selectedValue, onValueChange } = React.useContext(SelectContext)
-  const isSelected = selectedValue === value
+  const { value: selectedValue, onValueChange } = React.useContext(SelectContext);
+  const isSelected = selectedValue === value;
 
   return (
     <div
       ref={ref}
+      role="option"
+      aria-selected={isSelected}
+      tabIndex={0}
       className={cn(
         "relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
         isSelected && "bg-accent text-accent-foreground",
-        className
+        className,
       )}
       onClick={() => onValueChange(value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onValueChange(value);
+        }
+      }}
       {...props}
     >
-      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center" aria-hidden>
         {isSelected && <Check className="h-4 w-4" />}
       </span>
       {children}
     </div>
-  )
-})
-SelectItem.displayName = "SelectItem"
+  );
+});
+SelectItem.displayName = "SelectItem";
 
 const SelectSeparator = React.forwardRef(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("-mx-1 my-1 h-px bg-muted", className)} {...props} />
-))
-SelectSeparator.displayName = "SelectSeparator"
+  <div ref={ref} className={cn("-mx-1 my-1 h-px bg-muted", className)} role="separator" {...props} />
+));
+SelectSeparator.displayName = "SelectSeparator";
 
-export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectSeparator }
-
+export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectSeparator };
