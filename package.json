@@ -1,0 +1,11 @@
+{
+  "name": "stackloom-templates",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter templates for the Stackloom CLI.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abou-Sharif/stackloom-templates.git"
+  },
+  "license": "MIT"
+}

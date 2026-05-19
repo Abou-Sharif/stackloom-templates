@@ -1,5 +1,7 @@
 # stackloom-templates
 
+_Current version: 1.0.0_
+
 The starter applications [`stackloom`](https://github.com/Abou-Sharif/stackloom)
 scaffolds from. Each subdirectory is a complete, runnable application carrying
 a `.loom/blueprint.json` — the architecture contract the CLI reads to generate
