@@ -16,6 +16,9 @@ Use these files together:
 | `designThemes.studioElevated` | creative tools, portfolios, content workflows | rounded, expressive, elevated |
 | `designThemes.operationsDense` | inventory, logistics, reports | compact, flat, sharp, data-heavy |
 | `designThemes.commerceWarm` | shops, orders, merchant tools | warm, approachable, medium depth |
+| `designThemes.violetSanctum` | creative studios, AI tools, premium SaaS | rich purple, elevated, sophisticated |
+| `designThemes.tealFlow` | modern startups, wellness, fintech | calm teal, soft, contemporary |
+| `designThemes.warmNeutral` | editorial, publishing, lifestyle | cozy brown, warm, inviting |
 
 ## Ready Layouts
 

@@ -32,6 +32,14 @@
   --shadow-panel: 0 24px 70px hsl(222 47% 11% / 0.08);
   --data-row-height: 3.25rem;
   --data-gap: 1rem;
+  --focus-ring: 221 83% 53%;
+  --focus-offset: 2px;
+  --selection-bg: hsla(221 83% 53% / 0.20);
+  --selection-text: inherit;
+  --motion-speed: 150ms;
+  --scrollbar-width: thin;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: hsl(var(--border));
 }
 
 .dark {
@@ -60,10 +68,61 @@ body {
   min-width: 320px;
   background: hsl(var(--body-background));
   color: hsl(var(--foreground));
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans, Inter, ui-sans-serif, system-ui, sans-serif);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 :focus-visible {
-  outline: 2px solid hsl(var(--primary));
-  outline-offset: 2px;
+  outline: 2px solid hsl(var(--focus-ring, var(--primary)));
+  outline-offset: var(--focus-offset, 2px);
+}
+
+html {
+  scrollbar-width: var(--scrollbar-width, thin);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+html::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border-width: 2px;
+    --focus-offset: 3px;
+  }
+  * {
+    border-width: var(--border-width);
+  }
 }

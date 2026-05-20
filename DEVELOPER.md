@@ -37,13 +37,16 @@ Templates in this repo are designed to work with Stackloom CLI commands such as:
 
 - `loom new my-app --template mern`
 - `loom generate resource Product --fields "name:string:required;price:number"
-- `loom customize theme set clinicSoft`
+- `loom customize theme set violetSanctum` (8 built-in themes)
+- `loom customize theme import --file ./theme.css` (auto-applied)
 - `loom customize layout set sidebarWorkspace`
 - `loom customize ui set studio`
 - `loom customize data set denseOps`
+- `loom customize font set` (Google Fonts auto-import)
+- `loom customize css --file ./custom.css`
 
 The CLI reads the template contract from `.loom/blueprint.json` and rewrites the
-safe `app-preset.js` block for theming, layout, data display, and UI variant
+safe `app-preset.js` block for theming, layout, data display, font, and UI variant
 presets without disturbing custom app code.
 
 ## Versioning and releases
@@ -68,7 +71,11 @@ presets without disturbing custom app code.
 Templates in this repo follow a mobile-first UI design:
 
 - Keyboard-accessible navigation and action controls.
-- Focus-visible styles on interactive elements.
+- `:focus-visible` with theme-aware `--focus-ring` CSS variable.
+- `::selection` styling via `--selection-bg` and `--selection-text` tokens.
+- `prefers-reduced-motion`: disables all animations and transitions.
+- `prefers-contrast: more`: thickens border widths and increases focus offset.
+- Custom scrollbar styling via `--scrollbar-*` CSS variables.
 - Live-region announcements for pagination and status feedback.
 - Skip link for rapid page navigation.
 - Responsive dashboards, cards, tables, and forms.

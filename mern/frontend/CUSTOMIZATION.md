@@ -8,13 +8,16 @@ Run from the project root (where `frontend/src/config/app-preset.js` exists):
 
 | Command | What it changes |
 |--------|------------------|
-| `loom customize theme set clinicSoft` | Color tokens, radius, shadows |
+| `loom customize theme set violetSanctum` | Color tokens, radius, shadows (8 themes) |
+| `loom customize theme import --file ./theme.css` | Import a shadcn CSS theme (auto-applied) |
 | `loom customize layout set sidebarWorkspace` | Shell: topbar / sidebar / hybrid |
 | `loom customize data set denseOps` | Metrics grid + record list density |
 | `loom customize ui set studio` | Card, modal, select, pagination personalities |
 | `loom customize brand set --name "Acme"` | Brand name / tagline in preset |
+| `loom customize font set` | Body + heading fonts (Google Fonts auto-import) |
+| `loom customize css --file ./custom.css` | Inject custom CSS rules |
 
-Discovery: `loom customize list-themes`, `list-layouts`, `list-data`, `list-ui`.
+Discovery: `loom customize list-themes`, `list-layouts`, `list-data`, `list-ui`, `list-fonts`.
 
 ## Configuration layers
 
@@ -64,10 +67,17 @@ Generated resources use `loom resource sync` / `--amend` with merge zones — se
 - Pagination: `nav`, `aria-current="page"`, live region for counts
 - Select: combobox/listbox roles, keyboard activate on items
 - Modals: Radix Dialog / Sheet focus trap and titles
+- `:focus-visible` uses `var(--focus-ring)` — theme-aware, overridable per appearance recipe
+- `::selection` respects `--selection-bg` and `--selection-text` CSS vars
+- Scrollbar styling via `--scrollbar-width`, `--scrollbar-track`, `--scrollbar-thumb`
+- `prefers-reduced-motion`: all animations/transitions disabled, scroll-behavior set to auto
+- `prefers-contrast: more`: border width thickened, focus offset increased
 
 ## Making it “not look like the starter”
 
-1. `loom customize ui set commerce` + `theme set commerceWarm` + `layout set topbarPortal`
-2. Replace `dashboardCards`, landing copy, and navigation in `app-preset.js`
-3. Paste a shadcn theme via `loom customize theme import --file ./theme.css`
-4. Adjust CSS variables in `globals.css` for spacing and typography
+1. `loom customize font set` — pick a distinctive body + heading font pair (e.g. Instrument Sans + Playfair Display)
+2. `loom customize theme import --file ./theme.css` — paste a shadcn theme or use one of the 8 built-ins
+3. `loom customize ui set commerce` + `theme set commerceWarm` + `layout set topbarPortal`
+4. `loom customize css --css "..."` — inject brand-specific CSS overrides
+5. Replace `dashboardCards`, landing copy, and navigation in `app-preset.js`
+6. Tweak CSS variables via `loom customize css` or directly in `globals.css`
