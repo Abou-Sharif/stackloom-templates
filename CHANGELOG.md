@@ -2,7 +2,7 @@
 
 All notable changes to the Stackloom Templates repository will be documented here.
 
-## [1.1.0] — 2026-05-19
+## [1.2.0] — 2026-05-20
 
 ### Added
 
