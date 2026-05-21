@@ -11,7 +11,7 @@ import { useAppStore } from "@/store/useAppStore";
 export function Sidebar({ showAccountActions = false }) {
   const open = useAppStore((state) => state.sidebarOpen);
   const setOpen = useAppStore((state) => state.setSidebarOpen);
-  const { logout } = useAuth();
+  const { logout, isAuthenticated } = useAuth();
   const preset = useAppPreset();
   const sidebar = preset.layout.sidebar || {};
   const side = sidebar.side || "left";
@@ -38,18 +38,20 @@ export function Sidebar({ showAccountActions = false }) {
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <nav className="space-y-1" aria-label="Workspace navigation">
-          {preset.navigation.map((item) => (
-            <NavLink
-              className={({ isActive }) => cn("flex items-center gap-2 rounded-[var(--radius-nav)] px-3 py-2 text-sm hover:bg-muted", isActive && "bg-muted")}
-              to={item.href}
-              key={item.href}
-              onClick={() => setOpen(false)}
-            >
-              <PresetIcon name={item.icon} className="h-4 w-4" /> {item.label}
-            </NavLink>
-          ))}
-        </nav>
+        {isAuthenticated && (
+          <nav className="space-y-1" aria-label="Workspace navigation">
+            {preset.navigation.map((item) => (
+              <NavLink
+                className={({ isActive }) => cn("flex items-center gap-2 rounded-[var(--radius-nav)] px-3 py-2 text-sm hover:bg-muted", isActive && "bg-muted")}
+                to={item.href}
+                key={item.href}
+                onClick={() => setOpen(false)}
+              >
+                <PresetIcon name={item.icon} className="h-4 w-4" /> {item.label}
+              </NavLink>
+            ))}
+          </nav>
+        )}
         {showAccountActions && (
           <div className="mt-auto flex items-center justify-between gap-2 pt-6">
             <ThemeToggle />

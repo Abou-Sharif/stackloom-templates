@@ -38,7 +38,7 @@ export function Navbar({ showMenuButton = false }) {
           )}
           <Link to={ROUTES.HOME} className="font-semibold">{preset.brand.name}</Link>
         </div>
-        {align === "center" && (
+        {align === "center" && isAuthenticated && (
           <nav className="hidden items-center justify-center gap-2 md:flex" aria-label="Main navigation">
             {preset.navigation.map((item) => (
               <NavLink
