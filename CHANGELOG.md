@@ -2,7 +2,32 @@
 
 All notable changes to the Stackloom Templates repository will be documented here.
 
-## [1.2.0] — 2026-05-20
+## [1.3.0] — 2026-05-25
+
+### Added
+
+- **Component layout variants system** — new `src/variants/` directory with 33 variant files (3969 lines) across 8 component types:
+  - `Sidebar` — default, mini, floating, drawer (4 layouts)
+  - `Navbar` — default, floating, minimal, centered (4)
+  - `Footer` — default, minimal, detailed (3)
+  - `Card` — elevated, glass, bordered, stat, flat (5)
+  - `Modal` — centered, wide, sheet, compact (4)
+  - `Button` — solid, outline, ghost, gradient, pill (5)
+  - `FormLayout` — stacked, inline, floating, multi-column (4)
+  - `DataDisplay` — standard, dense, card-view, striped (4)
+- **`component-layouts.js`** — layout registry mapping each component to its available variants with labels and descriptions. Consumed by `loom customize component set/list` commands.
+- **`FormLayout.jsx`** — preset-aware form layout component (`FormField`, `FormRow`, `FormActions`). Reads `componentLayouts.formLayout` from the app preset and renders 4 different form structures (stacked, inline, floating, multi-column).
+- **Preset-aware `AppModal`** — `AppModal.jsx` reads `componentLayouts.modal` from the app preset instead of accepting a hardcoded `variant` prop. Supports centered dialog, wide dialog, bottom sheet, and compact modal.
+- **Preset-aware `Card`** — `ui/card.jsx` reads `componentLayouts.card` from the app preset instead of a hardcoded default. Added `CardFooter` export.
+- **`LoginForm` / `RegisterForm`** — refactored to use `FormLayout` components instead of raw `<Label>` + `<div>` patterns.
+- **Per-preset component layouts** — each preset (saas, clinic, studio, operations, commerce) now defines tailored `componentLayouts` in `app-preset.js`:
+  - Studio: floating sidebar, floating navbar, detailed footer, glass card, sheet modal, gradient button
+  - Operations: mini sidebar, minimal navbar, minimal footer, flat card, compact modal, outline button, inline form layout, dense data display
+  - Commerce: centered navbar, detailed footer, stat card, wide modal, pill button, multi-column form layout, card-view data display
+
+### Changed
+
+- `app-preset.js` — `baseContent` now includes default `componentLayouts` for all 8 component types.
 
 ### Added
 

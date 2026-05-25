@@ -4,6 +4,7 @@
 
 import { designLayouts } from "./design-layouts";
 import { designThemes, designTokens } from "./design-themes";
+import { componentLayouts } from "./component-layouts";
 import { dataDisplayTemplates } from "./data-display-templates";
 import { uiVariants } from "./ui-variants";
 import { installShadcnDesignPreset } from "@/lib/shadcn-theme";
@@ -23,6 +24,16 @@ const baseContent = {
   navigation: [
       nav.dashboard,
     ],
+  componentLayouts: {
+    sidebar: "default",
+    navbar: "default",
+    footer: "default",
+    card: "elevated",
+    modal: "centered",
+    button: "solid",
+    formLayout: "stacked",
+    dataDisplay: "standard",
+  },
 };
 
 const demoShadcnCss = `
@@ -91,6 +102,16 @@ export const presetVariants = {
     theme: designThemes.studioElevated,
     dataDisplay: dataDisplayTemplates.editorial,
     ui: uiVariants.studio,
+    componentLayouts: {
+      sidebar: "floating",
+      navbar: "floating",
+      footer: "detailed",
+      card: "glass",
+      modal: "sheet",
+      button: "gradient",
+      formLayout: "stacked",
+      dataDisplay: "standard",
+    },
     landing: {
       badge: "Flexible creative workspace",
       title: "StudioBoard",
@@ -117,6 +138,16 @@ export const presetVariants = {
     theme: designThemes.operationsDense,
     dataDisplay: dataDisplayTemplates.denseOps,
     ui: uiVariants.operations,
+    componentLayouts: {
+      sidebar: "mini",
+      navbar: "minimal",
+      footer: "minimal",
+      card: "flat",
+      modal: "compact",
+      button: "outline",
+      formLayout: "inline",
+      dataDisplay: "dense",
+    },
     landing: {
       badge: "Dense internal tooling",
       title: "OpsGrid",
@@ -143,6 +174,16 @@ export const presetVariants = {
     theme: designThemes.commerceWarm,
     dataDisplay: dataDisplayTemplates.commerce,
     ui: uiVariants.commerce,
+    componentLayouts: {
+      sidebar: "default",
+      navbar: "centered",
+      footer: "detailed",
+      card: "stat",
+      modal: "wide",
+      button: "pill",
+      formLayout: "multiColumn",
+      dataDisplay: "cardView",
+    },
     landing: {
       badge: "Storefront-ready foundation",
       title: "MarketPilot",
