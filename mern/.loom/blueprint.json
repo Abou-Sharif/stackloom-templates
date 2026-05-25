@@ -20,7 +20,7 @@
     "description": "Express + MongoDB API with httpOnly refresh-token auth, React + Vite + Tailwind frontend."
   },
   "engine": {
-    "minCliVersion": "0.1.0"
+    "minCliVersion": "1.0.0"
   },
   "roots": {
     "backend": {
