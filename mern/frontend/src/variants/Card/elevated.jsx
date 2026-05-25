@@ -1,13 +1,12 @@
-import { cardVariantClasses } from "@/lib/ui-variant-classes";
-import { useAppPreset } from "@/hooks/useAppPreset";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, variant: explicitVariant, ...props }) {
-  const preset = useAppPreset();
-  const variant = explicitVariant || preset?.componentLayouts?.card || "elevated";
+export function Card({ className, ...props }) {
   return (
     <div
-      className={cn(cardVariantClasses[variant] || cardVariantClasses.elevated, className)}
+      className={cn(
+        "rounded-[var(--radius-card)] border bg-card text-card-foreground shadow-[var(--shadow-card)] [border-width:var(--border-width)]",
+        className
+      )}
       {...props}
     />
   );

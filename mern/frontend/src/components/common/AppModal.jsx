@@ -15,11 +15,9 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { modalContentClasses } from "@/lib/ui-variant-classes";
+import { useAppPreset } from "@/hooks/useAppPreset";
 import { cn } from "@/lib/utils";
 
-/**
- * Preset-aware modal — uses centered dialog or bottom sheet based on `variant`.
- */
 export function AppModal({
   open,
   onOpenChange,
@@ -27,9 +25,12 @@ export function AppModal({
   description,
   children,
   footer,
-  variant = "centered",
+  variant: explicitVariant,
   className,
 }) {
+  const preset = useAppPreset();
+  const variant = explicitVariant || preset?.componentLayouts?.modal || "centered";
+
   if (variant === "sheet") {
     return (
       <Sheet open={open} onOpenChange={onOpenChange}>
